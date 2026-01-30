@@ -4,8 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <include
-        layout="@layout/toolbar_main_activity">
+    <include layout="@layout/toolbar_main_activity">
 
     </include>
 
