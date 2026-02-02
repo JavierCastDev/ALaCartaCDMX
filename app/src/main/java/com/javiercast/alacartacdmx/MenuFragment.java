@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
@@ -45,7 +46,7 @@ public class MenuFragment extends Fragment {
                 String seleccionado = (String) parent.getItemAtPosition(position);
                 Intent intent = new Intent(getActivity(), DescripcionPlatilloActivity.class);
                 intent.putExtra("platillo", seleccionado);
-                intent.putExtra("tipo", tipo); // PASAMOS EL TIPO AQUÍ
+                intent.putExtra("tipo", tipo);
                 startActivity(intent);
             });
         }
