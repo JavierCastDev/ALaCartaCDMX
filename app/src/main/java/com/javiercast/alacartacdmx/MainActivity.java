@@ -4,8 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -37,11 +40,37 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
         listView.setAdapter(adapter);
 
+        registerForContextMenu(listView);
+
         listView.setOnItemClickListener((parent, view, position, id) -> {
             String seleccionado = (String) parent.getItemAtPosition(position);
-
             Toast.makeText(MainActivity.this, "Has seleccionado: " + seleccionado, Toast.LENGTH_SHORT).show();
         });
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.menu_contextual, menu);
+        menu.setHeaderTitle("Seleccione una opción");
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.opcion_comida) {
+            Toast.makeText(this, "Abriendo Comida...", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.opcion_bebida) {
+            Toast.makeText(this, "Abriendo Bebidas...", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.opcion_complementos) {
+            Toast.makeText(this, "Abriendo Complementos...", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        return super.onContextItemSelected(item);
     }
 
     @Override
