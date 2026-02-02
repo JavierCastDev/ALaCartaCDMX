@@ -18,10 +18,12 @@ import androidx.fragment.app.Fragment;
 public class MenuFragment extends Fragment {
 
     private String[] datos;
+    private String tipo;
     private ArrayAdapter<String> adapter;
 
-    public MenuFragment(String[] datos) {
+    public MenuFragment(String[] datos, String tipo) {
         this.datos = datos;
+        this.tipo = tipo;
     }
 
     @Override
@@ -43,6 +45,7 @@ public class MenuFragment extends Fragment {
                 String seleccionado = (String) parent.getItemAtPosition(position);
                 Intent intent = new Intent(getActivity(), DescripcionPlatilloActivity.class);
                 intent.putExtra("platillo", seleccionado);
+                intent.putExtra("tipo", tipo); // PASAMOS EL TIPO AQUÍ
                 startActivity(intent);
             });
         }

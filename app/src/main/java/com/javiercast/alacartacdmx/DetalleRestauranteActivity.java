@@ -41,9 +41,9 @@ public class DetalleRestauranteActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(new MenuFragment(new String[]{"Tacos - $50", "Enchiladas - $80", "Pozole - $100"}), "Comida");
-        adapter.addFragment(new MenuFragment(new String[]{"Refresco - $25", "Agua - $20", "Cerveza - $40"}), "Bebida");
-        adapter.addFragment(new MenuFragment(new String[]{"Papas - $30", "Arroz - $25", "Frijoles - $20"}), "Complementos");
+        adapter.addFragment(new MenuFragment(new String[]{"Tacos - $50", "Enchiladas - $80", "Pozole - $100"}, "comida"), "Comida");
+        adapter.addFragment(new MenuFragment(new String[]{"Refresco - $25", "Agua - $20", "Cerveza - $40"}, "bebida"), "Bebida");
+        adapter.addFragment(new MenuFragment(new String[]{"Papas - $30", "Arroz - $25", "Frijoles - $20"}, "complemento"), "Complementos");
 
         viewPager.setAdapter(adapter);
     }
