@@ -30,6 +30,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <activity
+            android:name=".DescripcionPlatilloActivity"
+            android:label="Descripción"
+            android:parentActivityName=".DetalleRestauranteActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DetalleRestauranteActivity" />
+        </activity>
     </application>
 
 </manifest>

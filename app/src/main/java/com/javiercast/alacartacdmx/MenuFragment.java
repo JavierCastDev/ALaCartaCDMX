@@ -1,5 +1,6 @@
 package com.javiercast.alacartacdmx;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -24,6 +25,13 @@ public class MenuFragment extends Fragment {
         if (datos != null) {
             ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, datos);
             listView.setAdapter(adapter);
+
+            listView.setOnItemClickListener((parent, v, position, id) -> {
+                String seleccionado = (String) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getActivity(), DescripcionPlatilloActivity.class);
+                intent.putExtra("platillo", seleccionado);
+                startActivity(intent);
+            });
         }
 
         return view;
