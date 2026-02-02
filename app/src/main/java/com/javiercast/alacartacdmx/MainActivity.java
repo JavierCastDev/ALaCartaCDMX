@@ -3,6 +3,7 @@ package com.javiercast.alacartacdmx;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -11,7 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -44,7 +44,10 @@ public class MainActivity extends AppCompatActivity {
 
         listView.setOnItemClickListener((parent, view, position, id) -> {
             String seleccionado = (String) parent.getItemAtPosition(position);
-            Toast.makeText(MainActivity.this, "Has seleccionado: " + seleccionado, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, DetalleRestauranteActivity.class);
+            intent.putExtra("nombre", seleccionado);
+            intent.putExtra("tab_index", 0);
+            startActivity(intent);
         });
     }
 
@@ -57,20 +60,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        String restaurante = adapter.getItem(info.position);
+        Intent intent = new Intent(this, DetalleRestauranteActivity.class);
+        intent.putExtra("nombre", restaurante);
+
         int id = item.getItemId();
-
         if (id == R.id.opcion_comida) {
-            Toast.makeText(this, "Abriendo Comida...", Toast.LENGTH_SHORT).show();
-            return true;
+            intent.putExtra("tab_index", 0);
         } else if (id == R.id.opcion_bebida) {
-            Toast.makeText(this, "Abriendo Bebidas...", Toast.LENGTH_SHORT).show();
-            return true;
+            intent.putExtra("tab_index", 1);
         } else if (id == R.id.opcion_complementos) {
-            Toast.makeText(this, "Abriendo Complementos...", Toast.LENGTH_SHORT).show();
-            return true;
+            intent.putExtra("tab_index", 2);
         }
-
-        return super.onContextItemSelected(item);
+        startActivity(intent);
+        return true;
     }
 
     @Override
